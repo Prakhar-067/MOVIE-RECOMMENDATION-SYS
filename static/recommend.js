@@ -1,5 +1,4 @@
 $(function() {
-  // Button will be disabled until we type anything inside the input field
   const source = document.getElementById('autoComplete');
   const inputHandler = function(e) {
     if(e.target.value==""){
@@ -24,14 +23,12 @@ $(function() {
   });
 });
 
-// will be invoked when clicking on the recommended movies
 function recommendcard(e){
   var my_api_key = '73b0e4183856af04dd5e9707d27702ac';
   var title = e.getAttribute('title'); 
   load_details(my_api_key,title);
 }
 
-// get the basic details of the movie from the API (based on the name of the movie)
 function load_details(my_api_key,title){
   $.ajax({
     type: 'GET',
@@ -59,7 +56,6 @@ function load_details(my_api_key,title){
   });
 }
 
-// passing the movie name to get the similar movies from python's flask
 function movie_recs(movie_title,movie_id,my_api_key){
   $.ajax({
     type:'POST',
@@ -89,7 +85,6 @@ function movie_recs(movie_title,movie_id,my_api_key){
   }); 
 }
 
-// get all the details of the movie using the movie id.
 function get_movie_details(movie_id,my_api_key,arr,movie_title) {
   $.ajax({
     type:'GET',
@@ -104,7 +99,6 @@ function get_movie_details(movie_id,my_api_key,arr,movie_title) {
   });
 }
 
-// passing all the details to python's flask for displaying 
 function show_details(movie_details,arr,movie_title,my_api_key,movie_id){
   var imdb_id = movie_details.imdb_id;
   var poster = 'https://image.tmdb.org/t/p/original'+movie_details.poster_path;
@@ -162,11 +156,6 @@ function show_details(movie_details,arr,movie_title,my_api_key,movie_id){
   });
 }
 
-
-
-
-
-// getting posters for all the recommended movies
 function get_movie_posters(arr,my_api_key){
   var arr_poster_list = []
   for(var m in arr) {
